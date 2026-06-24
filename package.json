@@ -1,0 +1,27 @@
+{
+  "name": "monorepo-basic",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "scripts": {
+    "dev": "bun run --parallel --filter '*' dev",
+    "build": "bun run --parallel --filter '*' build",
+    "test": "bun run --parallel --filter '*' test",
+    "lint": "bun run --parallel --filter '*' lint",
+    "format": "bun run --parallel --filter '*' format",
+    "typecheck": "bun run --parallel --filter '*' typecheck",
+    "check": "bun run lint && bun run typecheck && bun run test && bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
