@@ -1,0 +1,9 @@
+$schema: './cache/schemas/toolchains.json'
+
+bun:
+  version: '1.3.14'
+
+javascript:
+  inferTasksFromScripts: false
+
+typescript: {}

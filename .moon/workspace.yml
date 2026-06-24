@@ -1,0 +1,14 @@
+$schema: './cache/schemas/workspace.json'
+
+projects:
+  globFormat: 'source-path'
+  globs:
+    - 'apps/*'
+    - 'services/*'
+    - 'packages/*'
+    - 'tools/*'
+
+pipeline:
+  installDependencies: true
+  syncProjects: true
+  syncWorkspace: true

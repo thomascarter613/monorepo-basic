@@ -1,0 +1,24 @@
+$schema: '../../.moon/cache/schemas/project.json'
+
+id: 'packages-config'
+language: 'typescript'
+stack: 'unknown'
+layer: 'library'
+
+project:
+  name: '@project/config'
+  description: 'Shared project configuration primitives.'
+
+toolchains:
+  default: ['javascript', 'typescript', 'bun']
+
+tasks:
+  build:
+    command: 'echo "No build required for @project/config"'
+    options:
+      cache: false
+
+  test:
+    command: 'bun test'
+    options:
+      cache: false

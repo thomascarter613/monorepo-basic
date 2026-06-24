@@ -30,3 +30,7 @@ temp/
 # TypeScript
 *.tsbuildinfo
 lib/
+
+# Moon
+.moon/cache/
+.moon/docker/

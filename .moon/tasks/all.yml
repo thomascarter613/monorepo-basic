@@ -1,0 +1,82 @@
+$schema: '../cache/schemas/tasks.json'
+
+fileGroups:
+  sources:
+    - 'src/**/*'
+  tests:
+    - 'tests/**/*'
+    - '**/*.test.ts'
+    - '**/*.spec.ts'
+  configs:
+    - 'package.json'
+    - 'tsconfig.json'
+    - '*.config.{js,cjs,mjs,ts}'
+  project:
+    - 'moon.yml'
+    - 'README.md'
+
+implicitInputs:
+  - 'package.json'
+  - 'tsconfig.json'
+  - '/package.json'
+  - '/bun.lock'
+  - '/tsconfig.base.json'
+  - '/biome.json'
+  - '/.moon/workspace.yml'
+  - '/.moon/toolchains.yml'
+  - '/.moon/tasks/**/*'
+
+tasks:
+  format:
+    command: 'bunx biome format --write .'
+    options:
+      cache: false
+
+  format-check:
+    command: 'bunx biome format .'
+    options:
+      cache: false
+
+  lint:
+    command: 'bunx biome lint .'
+
+  style-check:
+    command: 'bunx biome ci .'
+
+  typecheck:
+    command: 'bunx tsc --build --verbose'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+      - '/tsconfig.base.json'
+    options:
+      runFromWorkspaceRoot: true
+
+  test:
+    command: 'bun test'
+    inputs:
+      - '@group(sources)'
+      - '@group(tests)'
+      - '@group(configs)'
+
+  build:
+    command: 'bun run build'
+    deps:
+      - '^:build'
+    inputs:
+      - '@group(sources)'
+      - '@group(configs)'
+
+  check:
+    deps:
+      - 'style-check'
+      - 'typecheck'
+      - 'test'
+    options:
+      cache: false
+
+  dev:
+    command: 'bun run dev'
+    options:
+      persistent: true
+      cache: false
