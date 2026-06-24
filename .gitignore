@@ -34,3 +34,7 @@ lib/
 # Moon
 .moon/cache/
 .moon/docker/
+
+# Lefthook
+lefthook-local.yml
+.lefthook-local/

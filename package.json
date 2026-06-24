@@ -21,11 +21,16 @@
     "check": "moon run :check",
     "lint:fix": "biome lint --write .",
     "check:style": "biome ci .",
+    "hooks:install": "lefthook install",
+    "hooks:validate": "lefthook validate",
+    "hooks:pre-commit": "lefthook run pre-commit",
+    "hooks:pre-push": "lefthook run pre-push"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.1",
     "@moonrepo/cli": "^2.3.4",
-    "@types/bun": "^1.3.14"
+    "@types/bun": "^1.3.14",
+    "lefthook": "2.1.9"
   },
   "peerDependencies": {
     "typescript": "^6.0.3"

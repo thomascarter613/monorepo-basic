@@ -1,0 +1,25 @@
+# Lefthook runs local Git hooks for this monorepo.
+# Docs: https://lefthook.dev
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: biome check staged files
+      glob:
+        - "*.{js,jsx,ts,tsx,json,jsonc,css,graphql,gql}"
+      run: bunx biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
+
+    - name: typecheck repo
+      run: bun run typecheck
+
+pre-push:
+  parallel: true
+  jobs:
+    - name: full repo check
+      run: bun run check
+
+commit-msg:
+  jobs:
+    - name: conventional commit reminder
+      run: bun scripts/check-commit-message.ts {1}
