@@ -2,7 +2,7 @@
   "name": "monorepo-basic",
   "private": true,
   "type": "module",
-  "packageManager": "bun",
+  "packageManager": "bun@1.3.14",
   "workspaces": [
     "apps/*",
     "services/*",
